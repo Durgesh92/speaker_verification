@@ -1,0 +1,10 @@
+# compute-mfcc-feats --write-utt2dur=ark,t:test/exp/make_mfcc/utt2dur.1 --verbose=2 --config=conf/mfcc.conf scp,p:test/exp/make_mfcc/wav_test.1.scp ark:- | copy-feats --write-num-frames=ark,t:test/exp/make_mfcc/utt2num_frames.1 --compress=true ark:- ark,scp:/home/vox/durgesh/speaker_verification/test/exp/mfcc/raw_mfcc_test.1.ark,/home/vox/durgesh/speaker_verification/test/exp/mfcc/raw_mfcc_test.1.scp 
+# Started at Sun Dec 27 14:35:37 IST 2020
+#
+copy-feats --write-num-frames=ark,t:test/exp/make_mfcc/utt2num_frames.1 --compress=true ark:- ark,scp:/home/vox/durgesh/speaker_verification/test/exp/mfcc/raw_mfcc_test.1.ark,/home/vox/durgesh/speaker_verification/test/exp/mfcc/raw_mfcc_test.1.scp 
+compute-mfcc-feats --write-utt2dur=ark,t:test/exp/make_mfcc/utt2dur.1 --verbose=2 --config=conf/mfcc.conf scp,p:test/exp/make_mfcc/wav_test.1.scp ark:- 
+VLOG[2] (compute-mfcc-feats[5.5.859~1-89610]:main():compute-mfcc-feats.cc:182) Processed features for key 995-v995_057
+LOG (compute-mfcc-feats[5.5.859~1-89610]:main():compute-mfcc-feats.cc:185)  Done 1 out of 1 utterances.
+LOG (copy-feats[5.5.859~1-89610]:main():copy-feats.cc:143) Copied 1 feature matrices.
+# Accounting: time=0 threads=1
+# Ended (code 0) at Sun Dec 27 14:35:37 IST 2020, elapsed time 0 seconds
