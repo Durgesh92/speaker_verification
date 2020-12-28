@@ -52,10 +52,10 @@ def estimate_speaker_similarity(sig):
 
 def load_id_names(spk_id):
 	dict2 = {}
-	with open("person_identification.csv","r") as f1:
+	with open("id_name.txt","r") as f1:
 		for line in f1:
 			ls = line.strip().split(",")
-			dict2[ls[2]] = ls[3]
+			dict2[ls[0]] = ls[1]
 	return dict2[spk_id]
 
 def get_lowest_match(scores):

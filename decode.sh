@@ -40,11 +40,21 @@ sid/nnet3/xvector/extract_xvectors.sh --cmd "$train_cmd --mem 4G" --nj $nj \
 	$nnet_dir $input_dir \
 	$input_dir/exp/xvectors_test || exit 0;
 
-ivector-subtract-global-mean \
-	$nnet_dir/xvectors_train/mean.vec \
-	scp:$nnet_dir/xvectors_train/spk_xvector.scp \
-	ark:- | transform-vec $nnet_dir/xvectors_train/transform.mat ark:- \
-	ark: | ivector-normalize-length ark:- ark,t:$nnet_dir/train_global_mean.ark || exit 0;
+if test -f "$nnet_dir/train_global_mean.ark"; then
+	echo "$nnet_dir/train_global_mean.ark exists."
+else
+	ivector-subtract-global-mean \
+        	$nnet_dir/xvectors_train/mean.vec \
+        	scp:$nnet_dir/xvectors_train/spk_xvector.scp \
+        	ark:- | transform-vec $nnet_dir/xvectors_train/transform.mat ark:- \
+        	ark: | ivector-normalize-length ark:- ark,t:$nnet_dir/train_global_mean.ark || exit 0;
+fi
+
+#ivector-subtract-global-mean \
+#	$nnet_dir/xvectors_train/mean.vec \
+#	scp:$nnet_dir/xvectors_train/spk_xvector.scp \
+#	ark:- | transform-vec $nnet_dir/xvectors_train/transform.mat ark:- \
+#	ark: | ivector-normalize-length ark:- ark,t:$nnet_dir/train_global_mean.ark || exit 0;
 
 ivector-subtract-global-mean \
         $nnet_dir/xvectors_train/mean.vec \
